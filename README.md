@@ -1,5 +1,67 @@
-House Price Prediction
-This repository contains a complete end-to-end Machine Learning project that predicts house prices based on various structural and geographical features of properties. It demonstrates Data Loading, Exploratory Data Analysis (EDA), Feature Engineering, Model Training, and Evaluation using multiple regression algorithms.
-📌 Project OverviewPredicting the market value of a house is a classic problem in data science. This project leverages the King County House Sales dataset (consisting of over 21,000 rows and 21 features) to build an accurate predictive model.The primary goal is to find the best-performing model among Linear Regression, Polynomial Regression, and LightGBM Regressor by evaluating key performance metrics like $R^2$ score and Mean Absolute Error (MAE).
-📊 Dataset FeaturesThe dataset contains historical data of houses sold in King County, Washington (including Seattle) between May 2014 and May 2015.Feature NameDescriptionidUnique identifier for a housedateDate house was soldpricePrice is prediction target (Target Variable)bedroomsNumber of Bedrooms/HousebathroomsNumber of bathrooms/bedroomssqft_livingSquare footage of the interior living spacesqft_lotSquare footage of the land spacefloorsNumber of floorswaterfrontA dummy variable for whether the apartment was overlooking the waterfront or notviewAn index from 0 to 4 of how good the view from the property wasconditionAn index from 1 to 5 on the condition of the apartmentgradeAn index from 1 to 13 on the quality of construction and designsqft_aboveThe square footage of the interior housing space that is above ground levelsqft_basementThe square footage of the interior housing space that is below ground levelyr_builtThe year the house was initially builtyr_renovatedThe year of the house’s last renovationzipcodeWhat zipcode area the house is inlatLattitudelongLongitudesqft_living15The square footage of interior housing living space for the nearest 15 neighborssqft_lot15The square footage of the land lots of the nearest 15 neighbors
-🛠️ Tech Stack & LibrariesThe project is built entirely in Python using the following ecosystem:Data Manipulation: pandas, numpyData Visualization: matplotlib, seabornMachine Learning: scikit-learnGradient Boosting: lightgbm🚀 Project Workflow1.Setup and Data Loading:Step 1.Imported necessary libraries, initialized plotting configurations (whitegrid), loaded the Kc_House_Data.csv file, and performed initial checks using .head(), .info(), and .describe().2.Exploratory Data Analysis (EDA):Step 2.Analyzed continuous variables using distribution plots and plotted a Correlation Heatmap to identify features strongly tied to house prices (e.g., sqft_living, grade).3.Data Preprocessing & Feature Engineering:Step 3.Handled missing values, dropped unnecessary identifiers (like id and date), scaled continuous values using StandardScaler, and prepared data splits ($80/20$ train-test split).4.Model Implementation & Tuning:Step 4.Trained and tested three models:Base Linear RegressionPolynomial Regression (to capture non-linear trends)LightGBM Regressor (Gradient Boosting)5.Evaluation:Step 5.Evaluated models on the test set using $R^2$ score, Mean Squared Error (MSE), and Mean Absolute Error (MAE).📈 Key Insights from EDAStrongest Predictor: sqft_living (living area size) shares the highest positive correlation with price.Design Matters: Construction grade and sqft_above also show a powerful positive correlation with price trends.Geographical Impacts: Features like lat (latitude) and view show localized patterns impacting spatial pricing structures.
+# House Price Prediction
+
+An end-to-end machine learning project that predicts house prices using the King County (WA) house sales dataset. The notebook demonstrates data loading, exploratory data analysis (EDA), feature engineering, model training, and model evaluation.
+
+## Project overview
+Predicting house prices is a common supervised regression task. This project compares multiple approaches (Linear Regression, Polynomial Regression, and LightGBM) and evaluates them with metrics such as $R^2$ and Mean Absolute Error (MAE).
+
+## Dataset
+The dataset contains historical house sale records from King County, Washington (including Seattle) between May 2014 and May 2015 (≈21k rows, ~21 features).
+
+### Key features
+| Feature | Description |
+|---|---|
+| `id` | Unique identifier for the sale |
+| `date` | Date the house was sold |
+| `price` | Target variable — sale price |
+| `bedrooms` | Number of bedrooms |
+| `bathrooms` | Number of bathrooms |
+| `sqft_living` | Interior living area (square feet) |
+| `sqft_lot` | Lot size (square feet) |
+| `floors` | Number of floors |
+| `waterfront` | 1 if waterfront view, else 0 |
+| `view` | View score (0–4) |
+| `condition` | Condition score (1–5) |
+| `grade` | Construction/quality grade (1–13) |
+| `sqft_above` | Sqft above ground |
+| `sqft_basement` | Sqft of basement |
+| `yr_built` | Year built |
+| `yr_renovated` | Year renovated (0 if none) |
+| `zipcode` | ZIP code |
+| `lat`, `long` | Geographic coordinates |
+
+## Tech stack & libraries
+- Python 3
+- Data: `pandas`, `numpy`
+- Visualization: `matplotlib`, `seaborn`
+- Machine learning: `scikit-learn`, `lightgbm`
+
+## Project workflow
+1. Setup & data loading — import libraries and inspect the dataset with `.head()`, `.info()`, and `.describe()`.
+2. Exploratory data analysis (EDA) — visualize distributions and correlations, identify important predictors.
+3. Preprocessing & feature engineering — handle missing values, drop identifiers (e.g., `id`, `date`), create/transform features, scale where appropriate, and split data (80/20).
+4. Model training & tuning — train Linear Regression, Polynomial Regression, and LightGBM; tune hyperparameters when useful.
+5. Evaluation — compare models using $R^2$, MSE, and MAE and select the best-performing model.
+
+## Key insights
+- `sqft_living` (living area) is one of the strongest positive predictors of price.
+- `grade` and `sqft_above` also correlate positively with price.
+- Geographic features (`lat`, `long`, `view`) show local pricing effects.
+
+## How to run
+1. Create a virtual environment and install dependencies:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install pandas numpy matplotlib seaborn scikit-learn lightgbm
+```
+
+2. Open the notebook `[Hourse_prediction.ipynb](Hourse_prediction.ipynb)` and run the cells. The notebook contains the full EDA, preprocessing, model training, and evaluation steps.
+
+## Next steps (optional)
+- Add a `requirements.txt` or `environment.yml` for reproducible installs.
+- Add model serialization (e.g., `joblib`) and a small inference script to predict new samples.
+
+---
+Updated and formatted README for clarity and quick usage.
